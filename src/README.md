@@ -31,6 +31,7 @@ Uma aplicação FastAPI bem simples que permite às pessoas estudantes visualiza
 | ------ | ----------------------------------------------------------------- | ---------------------------------------------------------------------- |
 | GET    | `/activities`                                                     | Retorna todas as atividades com seus detalhes e o número atual de participantes |
 | POST   | `/activities/{activity_name}/signup?email=student@mergington.edu` | Inscreve em uma atividade                                              |
+| DELETE | `/activities/{activity_name}/signup?email=student@mergington.edu` | Cancela a inscrição em uma atividade                                   |
 
 ## Modelo de dados
 
@@ -48,3 +49,14 @@ A aplicação usa um modelo de dados simples, com identificadores significativos
    - Ano escolar
 
 Todos os dados são armazenados em memória, o que significa que serão reiniciados quando o servidor for reiniciado.
+
+## Executando os testes
+
+Os testes de backend ficam em `src/tests/` e usam `pytest` com o `TestClient` do FastAPI, seguindo o padrão AAA (Arrange-Act-Assert). Uma fixture `autouse` restaura o banco em memória antes de cada teste, garantindo isolamento.
+
+A partir da raiz do repositório:
+
+```
+pip install -r requirements.txt
+python -m pytest src/tests -v
+```
